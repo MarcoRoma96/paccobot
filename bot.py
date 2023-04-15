@@ -20,7 +20,7 @@ def help(message):
     ranking     = "\n/ranking : vuoi sapere la classifica attuale per qualche championship? chiama il numero verde: 800900313prestitòincontanticelho!!!"
     oroscopo    = "\n/horoscope : scopri il tuo oroscopo di qualsiasi giorno. Perché? Boh, di solito alle ragazze piace" 
     end         = "\n\nPuoi contribuire a modificarmi sulLA repo: aggiungi_qui_repo"
-    bot.reply_to(message, "Uè Uè, questi sono i comandi disponibili:" + help_ + points + ranking + oroscopo+)
+    bot.reply_to(message, "Uè Uè, questi sono i comandi disponibili:" + help_ + points + ranking + oroscopo + end)
 
 #############
 # HOROSCOPE #
