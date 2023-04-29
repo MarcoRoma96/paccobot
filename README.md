@@ -4,7 +4,7 @@ You can find my running version of this bot and test it on telegram as `@ilpacco
 You can find a good tutorial for beginners here: <https://www.freecodecamp.org/news/how-to-create-a-telegram-bot-using-python>
 
 ## Token
-The file the bot read to get the Token and maybe in the future other informations, should be called `env.json`. `example_env.json` is an example of this file, you can set there your specific bot token and remember to rename it removing `example_`.
+The file the bot reads to get the Token (and maybe in the future other informations) should be named `env.json`. `example_env.json` is an example of this file, you can set there your specific bot token and remember to rename it removing `example_`.
 
 ## Functions
 At the moment, nothing special. The aim of this bot is to create different championships, identified by a unique name, and assign points to players, with a tag for each addition of points that specifies the reason. Here I'm going to explain better how to use it, describing function by function.
