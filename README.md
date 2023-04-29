@@ -15,7 +15,7 @@ At the moment, nothing special. The aim of this bot is to create different champ
 - `/hello` or `/start`: reply with a simple message but actually does nothing.
 
 
-## Good ideas for developer contributuions:
+## Good ideas for developer contributions:
 - make buttons to select existing championship or players, or explicitly create a new one
 - allow to delete points (actually, it can be managed by a negative point addition)
 - allow to delete players and championships
