@@ -1,5 +1,7 @@
 # paccobot
-A ranking bot for generic purposes, allowing to keep points for different cathegories or championships
+A ranking bot for generic purposes, allowing to keep points for different cathegories or championships.
+You can find my running version of this bot and test it on telegram as `@ilpaccobot`, but consider that if you uses existing championship or player's names you are playing with some groups of friends somewere else in the world! Otherwise, you can create your own using this repository and simply obtaining a new Token by `@BotFather`.
+You can find a good tutorial for beginners here: <https://www.freecodecamp.org/news/how-to-create-a-telegram-bot-using-python>
 
 ## Token
 The file the bot read to get the Token and maybe in the future other informations, should be called `env.json`. `example_env.json` is an example of this file, you can set there your specific bot token and remember to rename it removing `example_`.
@@ -11,7 +13,6 @@ At the moment, nothing special. The aim of this bot is to create different champ
 - `/ranking`: prints the table of the current ranking for the specified championship. answer with the championship's name when asked by the bot.
 - `/horoscope`: without any reason, as you can guess, it is used to get the horoscope of any date for any sigh. It uses a remote server. 
 - `/hello` or `/start`: reply with a simple message but actually does nothing.
-
 
 
 ## Good ideas for developer contributuions:
