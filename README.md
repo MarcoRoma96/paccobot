@@ -10,6 +10,8 @@ At the moment, nothing special. The aim of this bot is to create different champ
 - `/points`: is the command you should use to add points to someone for a championship, the bot will guide you to different steps where you specify the name of the championship and the player you are adding points to, the number of points and the reason. If a championship or a player name does not exist it is simply created as new one. There is no sintax control, it is key-sensitive so be careful to use always the same nickname for a player, or you will have different players. Note also that if you use an already existing bot of this type and not your own, if you use the name of a championship or a player created by another user around the world, you will play at his his own championship. At the end of th eaddition of points a summary will be printed showing recent points of that player.
 - `/ranking`: prints the table of the current ranking for the specified championship. answer with the championship's name when asked by the bot.
 - `/horoscope`: without any reason, as you can guess, it is used to get the horoscope of any date for any sigh. It uses a remote server. 
+- `/hello` or `/start`: reply with a simple message but actually does nothing.
+
 
 
 ## Good ideas for developer contributuions:
