@@ -2,8 +2,14 @@ import os
 import telebot
 from utils import *
 from tabulate import tabulate
+import json
 
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
+THIS_DIR = os.path.dirname(__file__)
+
+with open(os.path.join(THIS_DIR, 'env.json')) as env_file:
+    env_dict = json.load(env_file)
+
+BOT_TOKEN = env_dict['PACCOBOT_TOKEN']
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
@@ -19,7 +25,7 @@ def help(message):
     points      = "\n/points : Ahia, qualcuno sis ta per beccare dei punti deludenza"
     ranking     = "\n/ranking : vuoi sapere la classifica attuale per qualche championship? chiama il numero verde: 800900313prestitòincontanticelho!!!"
     oroscopo    = "\n/horoscope : scopri il tuo oroscopo di qualsiasi giorno. Perché? Boh, di solito alle ragazze piace" 
-    end         = "\n\nPuoi contribuire a modificarmi sulLA repo: aggiungi_qui_repo"
+    end         = "\n\nPuoi contribuire a modificarmi sulLA repo: https://github.com/MarcoRoma96/paccobot.git"
     bot.reply_to(message, "Uè Uè, questi sono i comandi disponibili:" + help_ + points + ranking + oroscopo + end)
 
 #############
@@ -54,6 +60,7 @@ def fetch_horoscope(message, sign):
 ##############
 @bot.message_handler(commands=['points'])
 def championship_handler(message):
+    print("adding new points request...")
     text = "Oh wow! someone got some points!\nWhich is the championship?\n"
     sent_msg = bot.send_message(message.chat.id, text, parse_mode="Markdown")
     bot.register_next_step_handler(sent_msg, player_handler)
@@ -61,6 +68,7 @@ def championship_handler(message):
 
 def player_handler(message):
     championship = message.text
+    print("received championship: "+championship)
     text = "Which is the player?\n"
     sent_msg = bot.send_message(
         message.chat.id, text, parse_mode="Markdown")
@@ -70,6 +78,7 @@ def player_handler(message):
 
 def points_adder(message, championship):
     player = message.text
+    print("received player: "+player)
     text = "How many points do you think he deserves?\n"
     sent_msg = bot.send_message(
         message.chat.id, text, parse_mode="Markdown")
@@ -79,6 +88,7 @@ def points_adder(message, championship):
 
 def reason_adder(message, championship, player):
     points = int(message.text)
+    print("received points: "+str(points))
     text = "Whats the reason?\n"
     sent_msg = bot.send_message(
         message.chat.id, text, parse_mode="Markdown")
@@ -88,6 +98,7 @@ def reason_adder(message, championship, player):
 
 def fetch_championship(message, championship, player, points):
     reason = message.text
+    print("received reason: "+reason)
     ranking = push_championship(championship, player, points, reason).drop(columns=['championship'])
     #Human readable
     ranking = ranking.sort_index(ascending=False).head(5)
@@ -111,7 +122,7 @@ def championship_ranking_handler(message):
 def show_ranking_handler(message):
     championship = message.text
     text = "Here is the Ranking!\n{}".format(
-                                tabulate(get_championship(championship), headers='keys', tablefmt='psql')
+                                tabulate(get_championship(championship, bot, message), headers='keys', tablefmt='psql')
                             )
     sent_msg = bot.send_message(
         message.chat.id, text, parse_mode="Markdown")

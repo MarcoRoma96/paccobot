@@ -5,7 +5,7 @@ import datetime
 import pandas as pd
 
 
-path_to_score = "/home/marco/Altri_Lavori/Telegram-Paccobot/score.json"
+path_to_score = os.path.join(os.path.realpath(os.path.dirname(__file__)), 'score.json')
 
 def get_daily_horoscope(sign: str, day: str) -> dict:
     """Get daily horoscope for a zodiac sign.
@@ -22,9 +22,9 @@ def get_daily_horoscope(sign: str, day: str) -> dict:
     return response.json()
 
 
-def get_scores(path_to_score):
-    if os.path.isfile(path_to_score):
-        with open(path_to_score) as scorefile:
+def get_scores(path):
+    if os.path.isfile(path):
+        with open(path) as scorefile:
             score_dict = json.load(scorefile)
         return pd.DataFrame(score_dict)
         #print(score_df)
@@ -32,7 +32,13 @@ def get_scores(path_to_score):
         return pd.DataFrame()
 
 
-def get_championship(championship: str) -> dict:
+def error_answer(bot, message):
+    text = "You donkey, fucking idiot, whats wrong with you?? What the hell are you trying to do??"
+    bot.send_message(
+        message.chat.id, text, parse_mode="Markdown")
+    
+
+def get_championship(championship: str, bot, message) -> dict:
     """Get ranking of the specified championship.
 
     Keyword arguments:
@@ -41,7 +47,11 @@ def get_championship(championship: str) -> dict:
     championship: str - Championship identifier
     """
     score_df = get_scores(path_to_score)
+    print(score_df)
     score_df = score_df.loc[score_df["championship"] == championship]
+
+    if len(score_df) == 0:
+        error_answer(bot, message)
     pivoted  = score_df.pivot_table(index = ['player'],
                                     values=['points'],
                                     aggfunc=sum,
